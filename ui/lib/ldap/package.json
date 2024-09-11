@@ -5,7 +5,7 @@
     "ember-engine"
   ],
   "dependencies": {
-    "@hashicorp/design-system-components": "*",
+    "@hashicorp/design-system-components": "4.10.0",
     "ember-cli-htmlbars": "*",
     "ember-cli-babel": "*",
     "ember-concurrency": "*",
