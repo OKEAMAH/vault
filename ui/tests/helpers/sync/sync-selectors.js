@@ -85,7 +85,7 @@ export const PAGE = {
   saveButton: '[data-test-save]',
   toolbar: (btnText) => `[data-test-toolbar="${btnText}"]`,
   form: {
-    enableInput: (attr) => `[data-test-enable-field="${attr}"] [data-test-icon="edit"]`,
+    enableInput: (attr) => `[data-test-enable-field="${attr}"] [data-test-icon="edit"]`, // TODO duplicated in general-selectors as this component became more widely used
     fieldGroupHeader: (group) => `[data-test-destination-header="${group}"]`,
     fieldGroupSubtext: (group) => `[data-test-destination-subText="${group}"]`,
     fillInByAttr: async (attr, value) => {
@@ -99,11 +99,6 @@ export const PAGE = {
         case 'customTags':
           await fillIn('[data-test-kv-key="0"]', 'foo');
           return fillIn('[data-test-kv-value="0"]', value);
-        case 'accessKeyId':
-        case 'secretAccessKey':
-        case 'clientSecret':
-        case 'accessToken':
-          return fillIn(GENERAL.maskedInput(attr), value);
         case 'deploymentEnvironments':
           await click('[data-test-input="deploymentEnvironments"] input#development');
           await click('[data-test-input="deploymentEnvironments"] input#preview');

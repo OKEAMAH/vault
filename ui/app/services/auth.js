@@ -5,13 +5,12 @@
 
 import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
-import { getOwner } from '@ember/application';
+import { getOwner } from '@ember/owner';
 import { isArray } from '@ember/array';
 import { computed, get } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Service, { inject as service } from '@ember/service';
 import { capitalize } from '@ember/string';
-import fetch from 'fetch';
 import { resolve, reject } from 'rsvp';
 
 import getStorage from 'vault/lib/token-storage';
@@ -390,7 +389,7 @@ export default Service.extend({
     const now = this.now();
     this.set('lastFetch', timestamp);
     // if expiration was allowed and we're over half the ttl we want to go ahead and renew here
-    if (this.allowExpiration && now >= this.renewAfterEpoch) {
+    if (this.allowExpiration && this.renewAfterEpoch && now >= this.renewAfterEpoch) {
       this.renew();
     }
     this.set('allowExpiration', false);
